@@ -1,3 +1,4 @@
+import { Macro } from "./Macro";
 import { RecipeIngredient } from "./RecipeIngredient";
 
 export class Recipe {
@@ -6,10 +7,7 @@ export class Recipe {
     description: string;
     category: string[];
 
-    calories: number;
-    fat: number;
-    carbohydrates: number;
-    protein: number;
+    macros: Macro = new Macro();
 
     constructor(name: string, ingredients: RecipeIngredient[], description: string, category: string[]) {
         this.name = name;
@@ -17,42 +15,11 @@ export class Recipe {
         this.description = description;
         this.category = category;
         
-        this.calories = this.getCalories();
-        this.fat = this.getFat();
-        this.carbohydrates = this.getCarbohydrates();
-        this.protein = this.getProtein();
-    }
-
-
-    getCalories(): number {
-        let calories = 0;
-        for (let i = 0; i < this.recipeIngredients.length; i++) {
-            calories += this.recipeIngredients[i].getCalories();
+        for(let i = 0; i < this.recipeIngredients.length; i++){
+            this.macros.calories += this.recipeIngredients[i].getMacros().calories;
+            this.macros.fat += this.recipeIngredients[i].getMacros().fat;
+            this.macros.carbohydrates += this.recipeIngredients[i].getMacros().carbohydrates;
+            this.macros.protein += this.recipeIngredients[i].getMacros().protein;
         }
-        return calories;
-    }
-
-    getFat(): number {
-        let fat = 0;
-        for (let i = 0; i < this.recipeIngredients.length; i++) {
-            fat += this.recipeIngredients[i].getFat();
-        }
-        return fat;
-    }
-
-    getCarbohydrates(): number {
-        let carbohydrates = 0;
-        for (let i = 0; i < this.recipeIngredients.length; i++) {
-            carbohydrates += this.recipeIngredients[i].getCarbohydrates();
-        }
-        return carbohydrates;
-    }
-
-    getProtein(): number {
-        let protein = 0;
-        for (let i = 0; i < this.recipeIngredients.length; i++) {
-            protein += this.recipeIngredients[i].getProtein();
-        }
-        return protein;
     }
 }

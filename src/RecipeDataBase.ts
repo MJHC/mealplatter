@@ -22,7 +22,7 @@ export class RecipeDataBase{
         const ingredient = this.ingredients.find(ingredient => 
             ingredient.name.toLowerCase() === name.toLowerCase());
         if(ingredient === undefined){
-            const newIngredient = new Ingredient(name, 0, 0, 0, 0);
+            const newIngredient = Ingredient.createSample(name);
             this.ingredients.push(newIngredient);
             return newIngredient;
         }
@@ -38,27 +38,25 @@ export class RecipeDataBase{
         return recipe;
     }
 
-    generateMealPlan(mealsSplit: number, dailyCalories: number, dailyProtein: number, dailyCarbohydrates: number, dailyFat: number,){
-        const MealPlan: MealPlan =
-        const mealSplit = this.calculateMealSplit(dailyCalories, mealsSplit);
-        const breakfastMeals = this.recipes.find(recipe => recipe.category.includes("Breakfast") && recipe.calories <= mealSplit[0]);
-        const lunchMeals = this.recipes.find(recipe => recipe.category.includes("Lunch") && recipe.calories <= mealSplit[1]);
-        const dinnerMeals = this.recipes.find(recipe => recipe.category.includes("Dinner") && recipe.calories <= mealSplit[2]);
-        if(breakfastMeals && lunchMeals && dinnerMeals){
-            
-        }
-    
+    findRecipes(category: string): Recipe[]{
+        return  this.recipes.filter(recipe => recipe.category.includes(category))
     }
 
-    calculateMealSplit(dailyCalories: number, meals: number): number[]{
-        switch(meals){
-            case 3:
-                return [dailyCalories *0.325, dailyCalories*0.375, dailyCalories *0.3];
-            case 4:
-                return [dailyCalories *0.275, dailyCalories*0.07, dailyCalories *0.375, dailyCalories*0.275];
-            case 5:
-                return [dailyCalories *0.275, dailyCalories*0.07, dailyCalories *0.375, dailyCalories *0.07, dailyCalories*0.275];
+    generateMealPlan(): MealPlan[]{
+        const breakfast = this.findRecipes("Breakfast");
+        const lunch = this.findRecipes("Lunch");
+        const dinner = this.findRecipes("Dinner");
+        const recipes = [breakfast, lunch, dinner];
+        const mealPlans = []
+        for(let i = 0; i < 7; i++){
+            const mealPlan = new MealPlan();
+            recipes.forEach(category => {
+                const index = Math.floor(Math.random() * category.length);
+                mealPlan.recipes.push(category[index]);
+            });
+            mealPlan.calculateMacros();
+            mealPlans.push(mealPlan);
         }
-        return [dailyCalories *0.325, dailyCalories*0.375, dailyCalories *0.3];
+        return mealPlans
     }
 }

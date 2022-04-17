@@ -1,15 +1,16 @@
+import { Macro } from "./Macro";
 import { Recipe } from "./Recipe";
 
 export class MealPlan{
-    meals: Recipe[];
-    dailyCalories: number;
-    dailyProtein: number;
-    dailyCarbohydrates: number;
-    dailyFat: number;
+    recipes: Recipe[] = [];
+    macros: Macro = new Macro();
 
-    constructor(){
-
+    calculateMacros(){
+        this.recipes.forEach(recipe => {
+            this.macros.calories += recipe.macros.calories;
+            this.macros.carbohydrates += recipe.macros.carbohydrates;
+            this.macros.fat += recipe.macros.fat;
+            this.macros.protein += recipe.macros.protein;
+        });
     }
-
-    
 }

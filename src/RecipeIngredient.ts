@@ -1,3 +1,4 @@
+import { Macro } from "./Macro";
 import { Ingredient } from "./Ingredient";
 
 export class RecipeIngredient{
@@ -11,19 +12,12 @@ export class RecipeIngredient{
         this.unit = unit;
     }
 
-    getCalories(): number{
-        return this.ingredient.calories * (this.amount / 100);
-    }
-
-    getFat(): number{
-        return this.ingredient.fat * (this.amount / 100);
-    }
-
-    getCarbohydrates(): number{
-        return this.ingredient.carbohydrates * (this.amount / 100);
-    }
-
-    getProtein(): number{
-        return this.ingredient.protein * (this.amount / 100);
+    getMacros(): Macro{
+        const macro = new Macro();
+        macro.calories = this.ingredient.macros.calories * (this.amount / 100);
+        macro.fat = this.ingredient.macros.fat * (this.amount / 100);
+        macro.carbohydrates = this.ingredient.macros.carbohydrates * (this.amount / 100);
+        macro.protein = this.ingredient.macros.protein * (this.amount / 100);
+        return macro;
     }
 }
