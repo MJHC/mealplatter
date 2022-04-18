@@ -42,6 +42,12 @@ export class RecipeDataBase{
         return  this.recipes.filter(recipe => recipe.category.includes(category))
     }
 
+    getRandomRecipeFromCategory(category: string): Recipe{
+        const cat = this.findRecipes(category);
+        const index = Math.floor(Math.random() * cat.length);
+        return cat[index];
+    }
+
     generateMealPlan(): MealPlan[]{
         const breakfast = this.findRecipes("Breakfast");
         const lunch = this.findRecipes("Lunch");
@@ -52,7 +58,11 @@ export class RecipeDataBase{
             const mealPlan = new MealPlan();
             recipes.forEach(category => {
                 const index = Math.floor(Math.random() * category.length);
-                mealPlan.recipes.push(category[index]);
+                const recipe = category[index];
+
+                //Logic
+
+                mealPlan.recipes.push(recipe);
             });
             mealPlan.calculateMacros();
             mealPlans.push(mealPlan);

@@ -16,10 +16,10 @@ export class Recipe {
         this.category = category;
         
         for(let i = 0; i < this.recipeIngredients.length; i++){
-            this.macros.calories += this.recipeIngredients[i].getMacros().calories;
-            this.macros.fat += this.recipeIngredients[i].getMacros().fat;
-            this.macros.carbohydrates += this.recipeIngredients[i].getMacros().carbohydrates;
-            this.macros.protein += this.recipeIngredients[i].getMacros().protein;
+            this.macros.calories += this.recipeIngredients[i].macros.calories;
+            this.macros.fat += this.recipeIngredients[i].macros.fat;
+            this.macros.carbohydrates += this.recipeIngredients[i].macros.carbohydrates;
+            this.macros.protein += this.recipeIngredients[i].macros.protein;
         }
     }
 }

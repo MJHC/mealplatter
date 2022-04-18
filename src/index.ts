@@ -1,3 +1,4 @@
+import { Database } from "./Database";
 import { Ingredient } from "./Ingredient";
 import { Recipe } from "./Recipe";
 import { RecipeDataBase } from "./RecipeDataBase";
@@ -58,4 +59,6 @@ database.recipes.push(new Recipe("Ryebread with cheese",[
 
 const weekPlan = database.generateMealPlan();
 
-console.table(weekPlan[0].macros);
+//console.table(weekPlan[0].macros);
+
+const db = new Database();

@@ -12,7 +12,7 @@ export class RecipeIngredient{
         this.unit = unit;
     }
 
-    getMacros(): Macro{
+    get macros(): Macro{
         const macro = new Macro();
         macro.calories = this.ingredient.macros.calories * (this.amount / 100);
         macro.fat = this.ingredient.macros.fat * (this.amount / 100);
