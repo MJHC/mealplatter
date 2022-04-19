@@ -8,24 +8,21 @@ export class RecipeDataBase{
     recipes: Recipe[] = [];
     
 
+    loadIngredients(path: string){
+        const json = fs.readFileSync(path, 'utf8');
+        this.ingredients = JSON.parse(json);
+    }
+
     loadRecipes(path: string){
         const data = fs.readFileSync(path, 'utf8');
         this.recipes = JSON.parse(data);
     }
 
-    saveRecipes(path: string){
-        const data = JSON.stringify(this.recipes);
-        fs.writeFileSync(path, data);
-    }
 
-    findIngredient(name: string): Ingredient{
-        const ingredient = this.ingredients.find(ingredient => 
-            ingredient.name.toLowerCase() === name.toLowerCase());
-        if(ingredient === undefined){
-            const newIngredient = Ingredient.createSample(name);
-            this.ingredients.push(newIngredient);
-            return newIngredient;
-        }
+
+    findIngredient(name: string): Ingredient[]{
+        const ingredient = this.ingredients.filter(ingredient => 
+            ingredient.name.toLowerCase().includes(name.toLowerCase()));
         return ingredient;
     }
 

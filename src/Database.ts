@@ -27,7 +27,7 @@ export class Database{
         this.db.query(sqlQuery, (err, result) => {
             if(err) throw err;
             for(let i = 0; i < result.length; i++){
-                this.ingredients.push(new Ingredient(result[i].name, result[i].price, result[i].calories, result[i].fat, result[i].carbohydrates, result[i].protein));
+                this.ingredients.push(new Ingredient(result[i].name, "", result[i].price, result[i].calories, result[i].fat, result[i].carbohydrates, result[i].protein));
             }
         });
     }

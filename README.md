@@ -1,2 +1,7 @@
-# mealplatter-
-This is a meal plan maker written in TypeScipt, that makes a meal plan for a whole week with parameters such as calories and protein. 
+# MealPlatter - A Smart Meal PLanner
+
+## Credits
+
+Ingredients:
+Fødevaredata (http://frida.fooddata.dk), version 4, 2019
+Fødevareinstituttet, Danmarks Tekniske Universitet
