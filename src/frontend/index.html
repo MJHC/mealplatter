@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="../../build/frontend/js/IngredientTable.js"></script>
+    <script src="../../build/frontend/js/suggestionSearch.js"></script>
+    <title>MealPlatter</title>
+  </head>
+  <body>
+    <fieldset>
+      <legend>Recipe Creator</legend>
+          <label for="recipe_name">Recipe Name:</label>
+          <input type="text" name="recipe_name" id="recipe_name" placeholder="Recipe Name">
+          <label for="recipe_name">Portions:</label>
+          <input type="number" name="portions" id="portions" placeholder="1" min="0">
+
+          <fieldset><legend>Ingredients</legend>
+          <label for="recipe_ingredients">Recipe Ingredients:</label>
+          <table name="recipe_ingredients" id="ingredients"></table>
+          <button id="add-ingredient">Add new ingredient</button>
+          </fieldset>
+
+          <label for="recipe_description">Recipe Description:</label>
+          <textarea name="recipe_description" id="recipe_description" rows="10" placeholder="Recipe Description"></textarea>
+          <button id="save">Save Recipe</button>
+          <p>Calories: <span id="cal">0</span> Fat: <span id="fat">0</span> Carbs: <span id="carbs">0</span> Protein: <span id="protein">0</span> Price: <span id="price">0</span></p>
+      </fieldset>
+      <div id="result">
+      </div>
+      <script src="../../build/renderer.js"></script>
+  </body>
+</html>

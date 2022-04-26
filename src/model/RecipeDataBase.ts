@@ -20,9 +20,8 @@ export class RecipeDataBase{
 
 
 
-    findIngredient(name: string): Ingredient[]{
-        const ingredient = this.ingredients.filter(ingredient => 
-            ingredient.name.toLowerCase().includes(name.toLowerCase()));
+    findIngredient(name: string): Ingredient | undefined{
+        const ingredient = this.ingredients.find(ingredient => ingredient.name.toLowerCase() === name.toLowerCase());
         return ingredient;
     }
 

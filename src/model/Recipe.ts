@@ -5,14 +5,16 @@ export class Recipe {
     name: string;
     recipeIngredients: RecipeIngredient[];
     description: string;
+    portions: number;
     category: string[];
 
     macros: Macro = new Macro();
 
-    constructor(name: string, ingredients: RecipeIngredient[], description: string, category: string[]) {
+    constructor(name: string, ingredients: RecipeIngredient[], description: string, portions: number, category: string[]) {
         this.name = name;
         this.recipeIngredients = ingredients;
         this.description = description;
+        this.portions = portions;
         this.category = category;
         
         for(let i = 0; i < this.recipeIngredients.length; i++){
