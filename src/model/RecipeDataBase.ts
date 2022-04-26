@@ -18,7 +18,10 @@ export class RecipeDataBase{
         this.recipes = JSON.parse(data);
     }
 
-
+    saveRecipes(path: string){
+        const data = JSON.stringify(this.recipes);
+        fs.writeFileSync(path, data);
+    }
 
     findIngredient(name: string): Ingredient | undefined{
         const ingredient = this.ingredients.find(ingredient => ingredient.name.toLowerCase() === name.toLowerCase());
@@ -32,6 +35,11 @@ export class RecipeDataBase{
             throw new Error("Recipe not found");
         }
         return recipe;
+    }
+
+    addRecipe(recipe: Recipe){
+        this.recipes.push(recipe);
+        this.saveRecipes("./recipes.json");
     }
 
     findRecipes(category: string): Recipe[]{

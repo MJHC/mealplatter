@@ -6,14 +6,14 @@ function createWindow () {
     width: 800,
     height: 600,
     autoHideMenuBar: true,
-    icon: path.join(__dirname, "../src/frontend/assets/icon.ico"),
+    icon: path.join(__dirname, "../src/assets/icon.ico"),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
     }
   })
 
-  win.loadFile('../src/frontend/index.html')
+  win.loadFile('../src/index.html')
   win.webContents.openDevTools();
 }
 

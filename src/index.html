@@ -6,8 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="../../build/frontend/js/IngredientTable.js"></script>
-    <script src="../../build/frontend/js/suggestionSearch.js"></script>
+    <script src="../build/js/IngredientTable.js"></script>
     <title>MealPlatter</title>
   </head>
   <body>
@@ -18,19 +17,32 @@
           <label for="recipe_name">Portions:</label>
           <input type="number" name="portions" id="portions" placeholder="1" min="0">
 
+          <fieldset><legend>Categories</legend>
+            <input type="checkbox" id="breakfast" value="breakfast">
+            <label for="breakfast"> Breakfast</label><br>
+            <input type="checkbox" id="lunch" value="lunch">
+            <label for="lunch"> Lunch</label><br>
+            <input type="checkbox" id="dinner" value="dinner">
+            <label for="dinner"> Dinner</label><br>
+            <input type="checkbox" id="snack" value="snack">
+            <label for="snack"> Snack</label>
+          </fieldset>
+
           <fieldset><legend>Ingredients</legend>
           <label for="recipe_ingredients">Recipe Ingredients:</label>
           <table name="recipe_ingredients" id="ingredients"></table>
-          <button id="add-ingredient">Add new ingredient</button>
+          <button id="add_ingredient">Add new ingredient</button>
           </fieldset>
 
           <label for="recipe_description">Recipe Description:</label>
           <textarea name="recipe_description" id="recipe_description" rows="10" placeholder="Recipe Description"></textarea>
-          <button id="save">Save Recipe</button>
-          <p>Calories: <span id="cal">0</span> Fat: <span id="fat">0</span> Carbs: <span id="carbs">0</span> Protein: <span id="protein">0</span> Price: <span id="price">0</span></p>
+          <button id="create_recipe">Create Recipe</button>
+          <p id="macros">Calories: 0 Fat: 0 Carbs: 0 Protein: 0 Price: 0</p>
+          <button id="calculate_macros">Calculate Meal Info</button>
       </fieldset>
       <div id="result">
       </div>
-      <script src="../../build/renderer.js"></script>
+
+      <script src="../build/bundle.js" type="module"></script>
   </body>
 </html>

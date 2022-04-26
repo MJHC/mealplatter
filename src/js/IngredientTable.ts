@@ -1,13 +1,12 @@
 class IngredientTable{
     table: HTMLTableElement;
     ingredients: string[] = [];
+    static ingredientCount: number = 0;
     suggestionBox: HTMLDivElement = document.getElementById("result") as HTMLDivElement;
 
     constructor(table: string, ingredients: string[]){
         this.table = document.getElementById(table) as HTMLTableElement;
         this.ingredients = ingredients;
-        this.addTitleRow();
-        this.addRow();
     }
 
     addTitleRow(){
@@ -24,24 +23,36 @@ class IngredientTable{
         const ingredientAmount = row.insertCell(1);
         const ingredientUnit = row.insertCell(2);
         const ingredientPrice = row.insertCell(3);
-        const deleteButton = row.insertCell(4);
+        const updateButton = row.insertCell(4);
+        const deleteButton = row.insertCell(5);
         const ingredientNameInput = this.createInput("ingredientName", "text");
+        const ingredientAmountInput = this.createInput("amount", "number");
+        const ingredientUnitSelect = this.createSelect(["g", "kg", "ml", "l", "tsp", "tbsp"]);
 
         setEventListenersOnSearch(ingredientNameInput, this.ingredients, this.suggestionBox);
 
+        ingredientNameInput.id = String(IngredientTable.ingredientCount);
+        ingredientAmountInput.id  = String(IngredientTable.ingredientCount);
+        ingredientUnitSelect.id = String(IngredientTable.ingredientCount++);
+
         ingredientName.appendChild(ingredientNameInput);
-        ingredientAmount.appendChild(this.createInput("amount", "number"));
-        ingredientUnit.appendChild(this.createSelect(["g", "kg", "ml", "l"]));
+        ingredientAmount.appendChild(ingredientAmountInput);
+        ingredientUnit.appendChild(ingredientUnitSelect);
 
         const priceInput = this.createInput("price", "number");
         priceInput.setAttribute("disabled", "true");
         ingredientPrice.appendChild(priceInput);
 
-        const btn = this.createButton("Delete");
-        btn.addEventListener("click", () => {
+        const updateBtn = this.createButton("Update");
+        updateButton.appendChild(updateBtn);
+
+
+        const deleteBtn = this.createButton("Delete");
+        deleteBtn.addEventListener("click", () => {
             this.table.deleteRow(row.rowIndex);
+            IngredientTable.ingredientCount--;
         });
-        deleteButton.appendChild(btn);
+        deleteButton.appendChild(deleteBtn);
         return row;
     }
 
