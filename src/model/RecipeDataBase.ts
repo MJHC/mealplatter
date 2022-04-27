@@ -37,6 +37,20 @@ export class RecipeDataBase{
         return recipe;
     }
 
+    removeRecipe(name: string){
+        const index = this.recipes.findIndex(recipe => recipe.name.toLowerCase() === name.toLowerCase());
+        if(index === -1){
+            throw new Error("Recipe not found");
+        }
+        this.recipes.splice(index, 1);
+        this.saveRecipes("./recipes.json");
+    }
+        
+
+    getRecipes(): Recipe[]{
+        return this.recipes;
+    }
+
     addRecipe(recipe: Recipe){
         this.recipes.push(recipe);
         this.saveRecipes("./recipes.json");

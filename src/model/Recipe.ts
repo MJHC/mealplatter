@@ -24,4 +24,8 @@ export class Recipe {
             this.macros.protein += this.recipeIngredients[i].macros.protein;
         }
     }
+
+    ToString(): string {
+        return `${this.name} - ${this.recipeIngredients.length} ingredients - ${Math.floor(this.macros.calories)} calories - ${Math.floor(this.macros.fat)}g fat - ${Math.floor(this.macros.carbohydrates)}g carbs - ${Math.floor(this.macros.protein)}g protein`;
+    }
 }

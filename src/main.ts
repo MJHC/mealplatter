@@ -4,7 +4,7 @@ import * as path from 'path'
 function createWindow () {
   const win = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 800,
     autoHideMenuBar: true,
     icon: path.join(__dirname, "../src/assets/icon.ico"),
     webPreferences: {

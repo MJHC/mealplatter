@@ -6,6 +6,8 @@ export interface IElectronAPI {
     getIngredients: () => string[],
     findIngredient: (name: string) => Ingredient | undefined,
     saveRecipe:(recipe: Recipe) => void,
+    getRecipes: () => Recipe[],
+    removeRecipe:(name: string) => void,
   }
   
 declare global {
