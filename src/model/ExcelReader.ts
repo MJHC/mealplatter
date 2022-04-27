@@ -1,7 +1,7 @@
 import * as excel from 'exceljs';
 import fs from 'fs';
 import { Ingredient } from './Ingredient';
-export class ExcelReader{
+class ExcelReader{
     static read(){
         const ingredients: Ingredient[] = [];
         const workbook = new excel.Workbook();
@@ -27,3 +27,5 @@ export class ExcelReader{
         });
     }
 }
+
+ExcelReader.read();
