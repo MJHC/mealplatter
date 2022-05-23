@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { Ingredient } from "./Ingredient";
-import { MealPlan } from './MealPlan';
-import { Recipe } from "./Recipe";
+import { Ingredient } from "../model/Ingredient";
+import { MealPlan } from '../model/MealPlan';
+import { Recipe } from "../model/Recipe";
 
 export class RecipeDataBase{
     ingredients: Ingredient[] = [];
@@ -87,4 +87,16 @@ export class RecipeDataBase{
         }
         return mealPlans
     }
+}
+
+export function loadIngredients(path: string): Ingredient[]{
+    const json = fs.readFileSync(path, 'utf8');
+    const ingredients: Ingredient[] = JSON.parse(json);
+    return ingredients;
+}
+
+export function loadRecipes(path: string): Recipe[]{
+    const data = fs.readFileSync(path, 'utf8');
+    const recipes: Recipe[] = JSON.parse(data);
+    return recipes;
 }

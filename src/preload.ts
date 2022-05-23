@@ -1,12 +1,12 @@
 import { contextBridge } from 'electron';
 import * as os from 'os';
-import { RecipeDataBase } from './model/RecipeDataBase';
+import { RecipeDataBase } from './data/RecipeDataBase';
 import * as path from 'path'
 import { Recipe } from './model/Recipe';
 
 const db = new RecipeDataBase();
-db.loadIngredients(path.join(__dirname, '../ingredients.json'));
-db.loadRecipes(path.join(__dirname, '../recipes.json'));
+db.loadIngredients(path.join(__dirname, '../data/ingredients.json'));
+db.loadRecipes(path.join(__dirname, '../data/recipes.json'));
 
 contextBridge.exposeInMainWorld('electronAPI', {
     getCPUCores: () => os.cpus()[0].model,

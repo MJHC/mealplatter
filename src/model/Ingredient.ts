@@ -1,27 +1,37 @@
 import { Macro } from "./Macro";
+import { Ref } from "./Ref";
 
 export class Ingredient {
     name: string;
-    price: number;
-    category: string;
+    producer: string;
+    unitPrice: number;
+    priceKg: number;
+    unitAmount: number;
+    categories: string[];
+    ref: Ref;
     macros: Macro = new Macro();
     
 
-    constructor(name: string, category:string, price:number, calories: number, fat: number, carbohydrates: number, protein: number) {
+    constructor(name: string, producer: string, unitPrice: number, priceKg: number, unitAmount: number, categories: string[], ref: Ref, calories: number, fat: number, carbohydrates: number, protein: number) {
         this.name = name;
-        this.price = price;
-        this.category = category;
+        this.producer = producer;
+        this.unitPrice = unitPrice;
+        this.priceKg = priceKg;
+        this.unitAmount = unitAmount;
+        this.categories = categories;
+        this.ref = ref;
         this.macros.calories = calories;
         this.macros.fat = fat;
         this.macros.carbohydrates = carbohydrates;
         this.macros.protein = protein;
     }
 
+
     static createSample(name: string){
-        return new Ingredient(name, "", 0, 0, 0, 0, 0);
+        return new Ingredient(name, "", 0, 0, 0, [""], new Ref("sample", 0), 0, 0, 0, 0);
     }
 
     toString(){
-        return `name: ${this.name} price: ${this.price} category: ${this.category} calories: ${this.macros.calories} fat: ${this.macros.fat} carbohydrates: ${this.macros.carbohydrates} protein: ${this.macros.protein}`;
+        return `name: ${this.name} price: ${this.priceKg} category: ${this.categories[0]} calories: ${this.macros.calories} fat: ${this.macros.fat} carbohydrates: ${this.macros.carbohydrates} protein: ${this.macros.protein}`;
     }
 }

@@ -61,6 +61,7 @@ export class RecipeCreator{
             const macros = document.getElementById("macros") as HTMLParagraphElement;
             const macro = new Macro();
             let weight = 0;
+            let price = 0;
         
             this.table.recipeIngredients.forEach((value, key) => {
                 macro.calories += value.macros.calories;
@@ -68,9 +69,15 @@ export class RecipeCreator{
                 macro.carbohydrates += value.macros.carbohydrates;
                 macro.protein += value.macros.protein;
                 weight += value.amount;
+                price += value.price;
             });
         
-            macros.innerText = `Calories: ${Math.floor(macro.calories)} - Fat: ${Math.floor(macro.fat)}g - Carbohydrates: ${Math.floor(macro.carbohydrates)}g - Protein: ${Math.floor(macro.protein)}g - Weight: ${Math.floor(weight)}g`;
+            macros.innerText = `Calories: ${macro.calories} - 
+                                Fat: ${macro.fat}g - 
+                                Carbohydrates: ${macro.carbohydrates}g - 
+                                Protein: ${macro.protein}g - 
+                                Weight: ${weight}g - 
+                                Price ${price} kr.`;
         });
     }
 
