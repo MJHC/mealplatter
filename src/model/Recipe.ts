@@ -1,5 +1,6 @@
 import { Macro } from "./Macro";
 import { RecipeIngredient } from "./RecipeIngredient";
+import { Ref } from "./Ref";
 
 export class Recipe {
     name: string;
@@ -7,15 +8,17 @@ export class Recipe {
     description: string;
     portions: number;
     category: string[];
+    ref: Ref;
 
     macros: Macro = new Macro();
 
-    constructor(name: string, ingredients: RecipeIngredient[], description: string, portions: number, category: string[]) {
+    constructor(name: string, ingredients: RecipeIngredient[], description: string, portions: number, category: string[], ref: Ref) {
         this.name = name;
         this.recipeIngredients = ingredients;
         this.description = description;
         this.portions = portions;
         this.category = category;
+        this.ref = ref;
         
         for(let i = 0; i < this.recipeIngredients.length; i++){
             this.macros.calories += this.recipeIngredients[i].macros.calories;

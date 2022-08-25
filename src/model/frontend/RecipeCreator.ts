@@ -2,6 +2,7 @@ import { Macro } from "../Macro";
 import { Recipe } from "../Recipe";
 import { IngredientTable } from "./IngredientTable";
 import { createButton, createRow } from "./Elementor";
+import { Ref } from "../Ref";
 
 export class RecipeCreator{
     NameInput = document.getElementById("recipe_name") as HTMLInputElement;
@@ -29,7 +30,8 @@ export class RecipeCreator{
                 riArray, 
                 this.DescInput.value, 
                 parseInt(this.portionsInput.value), 
-                this.getCategories()
+                this.getCategories(),
+                new Ref("User", -1)
                 );
             window.electronAPI.saveRecipe(recipe);
 

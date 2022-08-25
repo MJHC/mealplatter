@@ -3,11 +3,13 @@ import { Ingredient } from "./Ingredient";
 
 export class RecipeIngredient{
     ingredient: Ingredient;
+    instruction: string;
     amount: number;
     unit: string;
 
-    constructor(ingredient: Ingredient, amount: number, unit: string){
+    constructor(ingredient: Ingredient, instruction: string, amount: number, unit: string){
         this.ingredient = ingredient;
+        this.instruction = instruction;
         this.amount = amount;
         this.unit = unit;
     }

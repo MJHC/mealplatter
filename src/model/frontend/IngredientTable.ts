@@ -81,7 +81,7 @@ function update(nameInput: HTMLInputElement, amountInput: HTMLInputElement, unit
 
         if(ingredient === undefined) return;
 
-        const recipeIngredient = new RecipeIngredient(ingredient, Number(amountInput.value), unitSelect.value);
+        const recipeIngredient = new RecipeIngredient(ingredient, "", Number(amountInput.value), unitSelect.value);
         recipeIngredients.set(nameInput.id, recipeIngredient);
         console.log(ingredient);
 }

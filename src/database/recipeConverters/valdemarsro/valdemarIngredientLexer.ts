@@ -1,4 +1,4 @@
-import { Token } from "./Token";
+import { Token } from "../../Token";
 const UNIT = new RegExp(/^g|kg|ml|^l|tsk|dl|fed|stænger|dåse|håndfuld|spsk|nip/);
 const AMONUT = new RegExp(/[0-9]+(\,[0-9]+)?/);
 const NUMBER = new RegExp(/[0-9]/);
@@ -6,7 +6,12 @@ const INGREDIENT = new RegExp(/[a-zæøåéA-ZÆØÅÉ]+/);
 const INSTRUCTIONS = new RegExp(/,.+$/);
 const WHITESPACE = new RegExp(/\s+/);
 
-export function lexer(input: string): Token[]{
+export function convertValdemarIngredient(ingredient: string){
+    let tokens = lexer(ingredient);
+    console.log(tokens);
+}
+
+function lexer(input: string): Token[]{
     let tokens: Token[] = [];
     const EOF = input.length;
     let peek = 0;
@@ -28,7 +33,7 @@ export function lexer(input: string): Token[]{
         }
         else if(/,/.test(lookAHead)){
             let lexeme = scanInstructions(input, peek);
-            pushToken("INSTRUCTIONS", lexeme);
+            pushToken("INSTRUCTIONS", lexeme.substring(1).trim());
             peek += lexeme.length;
         } else {
             throw Error("Lexer Error: " + input);
